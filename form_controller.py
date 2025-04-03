@@ -1,8 +1,9 @@
-from browser_use import Browser, Controller
+from browser_use import Browser, Controller, ActionResult
 from typing import Dict, Any
 import os
 import pandas as pd
 from pathlib import Path
+import json
 
 # Initialize the controller
 controller = Controller()
@@ -26,7 +27,7 @@ async def configure_download_behavior(browser: Browser, download_dir: str = "./d
 
     page.on("download", handle_download)
     
-    return download_dir
+    return ActionResult(extracted_content=f"Downloads Directory: {download_dir}")
 
 @controller.action('Get downloaded Excel file')
 async def get_downloaded_excel(browser: Browser, download_dir: str = "./downloads") -> str:
@@ -44,15 +45,15 @@ async def get_downloaded_excel(browser: Browser, download_dir: str = "./download
     
     # Get the most recent file
     latest_file = max(files, key=lambda x: x.stat().st_mtime)
-    return str(latest_file)
+    return ActionResult(extracted_content=f"Downloaded file: {str(latest_file)}")
 
 @controller.action('Analyze Excel file and return data')
-def analyze_excel_file(file_path: str) -> Dict[str, Any]:
+def analyze_excel_file(file_path: str):
     """
     Reads an Excel file using pandas and returns the data as a dictionary.
     """
     if not os.path.exists(file_path):
-        return {"error": f"File not found: {file_path}"}
+        return json.dumps({"error": f"File not found: {file_path}"})
     
     try:
         # Read the Excel file
@@ -60,13 +61,15 @@ def analyze_excel_file(file_path: str) -> Dict[str, Any]:
         
         # Convert DataFrame to dictionary
         data = df.to_dict(orient='records')
-        
-        # Return the data and some summary info
-        return {
-            "file_path": file_path,
+
+        data_string = json.dumps({
             "row_count": len(data),
-            "columns": list(df.columns),
             "data": data
-        }
+        })
+
+        print(data_string)
+        
+        # Return the stringified data and some summary info
+        return ActionResult(extracted_content=data_string)
     except Exception as e:
-        return {"error": f"Error reading Excel file: {str(e)}"} 
+        return json.dumps({"error": f"Error reading Excel file: {str(e)}"})

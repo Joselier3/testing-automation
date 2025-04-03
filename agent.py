@@ -16,7 +16,8 @@ async def main():
         "1. Configuring the download behavior",
         "2. Downloading the Excel file, ",
         "3. Reading the data, and",
-        "4. Starting the challenge and filling out the forms with the information from the Excel file",
+        "4. Starting the challenge and filling out the first form with the information from the Excel file",
+        "5. For each form, first analyze excel data, select the corresponding row and fill out the form with the data",
         "https://www.arenarpa.com/crazy-form"
     )
 
