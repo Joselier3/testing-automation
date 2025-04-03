@@ -2,23 +2,28 @@
 
 Esta guía te ayudará a configurar el entorno necesario para ejecutar el programa de automatización de formularios.
 
+## Requisitos Previos
+
+1. **Python 3.11**
+   - Si no tienes Python instalado:
+     1. Visita [python.org/downloads](https://www.python.org/downloads/)
+     2. Descarga la versión 3.11.x para Windows
+     3. Durante la instalación, marca la casilla "Add Python to PATH"
+     4. Verifica la instalación abriendo el Símbolo del sistema y escribiendo:
+        ```
+        python --version
+        ```
+        Deberías ver "Python 3.11.x"
+
 ## Instalación del Gestor de Paquetes (uv)
 
-1. **Windows**:
-   - Abre el Símbolo del sistema (cmd)
-   - Copia y pega el siguiente comando:
-     ```
-     powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-     ```
-
-2. **Linux**:
-   - Abre una terminal
-   - Copia y pega el siguiente comando:
-     ```
-     curl -LsSf https://astral.sh/uv/install.sh | sh
-     ```
-
-3. Verifica la instalación escribiendo:
+1. Abre el Símbolo del sistema (cmd)
+2. Copia y pega el siguiente comando:
+   ```
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+3. **Importante**: Cierra y vuelve a abrir el Símbolo del sistema para que los cambios en el PATH surtan efecto
+4. Verifica la instalación escribiendo:
    ```
    uv --version
    ```
@@ -26,19 +31,34 @@ Esta guía te ayudará a configurar el entorno necesario para ejecutar el progra
 
 ## Configuración del Entorno Virtual
 
-1. Crea un directorio para el proyecto
-2. Abre una terminal en ese directorio
+1. **Abre el Símbolo del sistema en el directorio del proyecto**:
+   - Método 1 (Recomendado):
+     1. Abre el Explorador de Windows
+     2. Navega hasta la carpeta 'testing-automation'
+     3. En la barra de direcciones, escribe 'cmd' y presiona Enter
+   
+   - Método 2 (Alternativo):
+     1. Abre el Explorador de Windows
+     2. Navega hasta la carpeta 'testing-automation'
+     3. Haz clic derecho en un espacio vacío de la carpeta
+     4. Selecciona "Abrir la ventana de comandos aquí"
+
+2. Verifica que estás en el directorio correcto:
+   ```
+   cd
+   ```
+   Deberías ver la ruta que termina en 'testing-automation'
+
 3. Ejecuta los siguientes comandos en orden:
 
    ```
-   # Crear el entorno virtual
-   uv venv --python 3.11
+   # Crear el entorno virtual con nombre específico
+   uv venv browser_use_ve --python 3.11
 
    # Activar el entorno virtual
-   source .venv/bin/activate  # Linux
-   .venv\Scripts\activate     # Windows
+   browser_use_ve\Scripts\activate
    ```
-   Verás que el prompt cambia para mostrar `(.venv)` al inicio
+   Verás que el prompt cambia para mostrar `(browser_use_ve)` al inicio
 
 4. Para desactivar el entorno virtual cuando termines, escribe:
    ```
@@ -47,7 +67,7 @@ Esta guía te ayudará a configurar el entorno necesario para ejecutar el progra
 
 ## Instalación de Dependencias
 
-1. Asegúrate de que el entorno virtual está activado (deberías ver `(.venv)` al inicio del prompt)
+1. Asegúrate de que el entorno virtual está activado (deberías ver `(browser_use_ve)` al inicio del prompt)
 2. Instala las dependencias del proyecto:
    ```
    uv pip install -r requirements.txt
@@ -69,9 +89,9 @@ Esta guía te ayudará a configurar el entorno necesario para ejecutar el progra
 2. Abre el archivo con un editor de texto
 3. Añade la siguiente línea:
    ```
-   OPENAI_API_KEY=tu_clave_api_aquí
+   OPENAI_API_KEY=<tu_clave_api_aquí>
    ```
-   Reemplaza `tu_clave_api_aquí` con tu clave de API de OpenAI
+   Reemplaza `<tu_clave_api_aquí>` con tu clave de API de OpenAI
 
 ## Ejecución del Programa
 
@@ -85,11 +105,13 @@ Esta guía te ayudará a configurar el entorno necesario para ejecutar el progra
 
 - **Error al instalar uv**: 
   - Intenta ejecutar el comando de instalación nuevamente
-  - Asegúrate de tener conexión a internet
+  - Asegúrate de haber reiniciado el Símbolo del sistema después de la instalación
+  - Verifica que tienes conexión a internet
 
 - **Error al activar el entorno virtual**:
   - Asegúrate de estar en el directorio correcto
-  - Verifica que el directorio `.venv` existe
+  - Verifica que el directorio `browser_use_ve` existe
+  - Comprueba que Python 3.11 está instalado correctamente
 
 - **Error al instalar dependencias**:
   - Verifica que el entorno virtual está activado
