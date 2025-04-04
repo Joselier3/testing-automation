@@ -10,19 +10,6 @@ Esta guía te ayudará a configurar el entorno necesario para ejecutar el progra
    - Extrae el archivo ZIP en una ubicación de tu preferencia (por ejemplo, en el Escritorio)
    - La carpeta extraída se llamará 'testing-automation'
 
-## Requisitos Previos
-
-1. **Python 3.11**
-   - Si no tienes Python instalado:
-     1. Visita [python.org/downloads](https://www.python.org/downloads/)
-     2. Descarga la versión 3.11.x para Windows
-     3. Durante la instalación, marca la casilla "Add Python to PATH"
-     4. Verifica la instalación abriendo el Símbolo del sistema y escribiendo:
-        ```
-        python --version
-        ```
-        Deberías ver "Python 3.11.x"
-
 ## Instalación del Gestor de Paquetes (uv)
 
 1. Abre el Símbolo del sistema (cmd)
