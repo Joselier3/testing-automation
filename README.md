@@ -2,6 +2,14 @@
 
 Esta guía te ayudará a configurar el entorno necesario para ejecutar el programa de automatización de formularios.
 
+## Obtención del Código del Proyecto
+
+1. **Descarga el proyecto**:
+   - Visita el repositorio del proyecto
+   - Haz clic en el botón "Code" y selecciona "Download ZIP"
+   - Extrae el archivo ZIP en una ubicación de tu preferencia (por ejemplo, en el Escritorio)
+   - La carpeta extraída se llamará 'testing-automation'
+
 ## Requisitos Previos
 
 1. **Python 3.11**
