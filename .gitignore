@@ -11,3 +11,7 @@ wheels/
 
 # Environment variables
 .env
+
+# Binary files and runtime data
+/downloads
+/recordings
